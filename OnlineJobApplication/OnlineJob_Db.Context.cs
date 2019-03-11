@@ -33,5 +33,6 @@ namespace OnlineJobApplication
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Religion> Religions { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<CareerArea> CareerAreas { get; set; }
     }
 }

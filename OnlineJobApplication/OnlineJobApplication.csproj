@@ -189,6 +189,9 @@
     <Compile Include="AspNetUserLogin.cs">
       <DependentUpon>OnlineJob_Db.tt</DependentUpon>
     </Compile>
+    <Compile Include="CareerArea.cs">
+      <DependentUpon>OnlineJob_Db.tt</DependentUpon>
+    </Compile>
     <Compile Include="CommonHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
