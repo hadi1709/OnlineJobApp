@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="55e09167518e487987c1176b278aa786" Name="Diagram1">
+        <EntityTypeShape EntityType="db_1526890_onlinejobModel.C__MigrationHistory" Width="1.5" PointX="8.125" PointY="0.625" />
+        <EntityTypeShape EntityType="db_1526890_onlinejobModel.AspNetRole" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="db_1526890_onlinejobModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="7.5" />
+        <EntityTypeShape EntityType="db_1526890_onlinejobModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="10.125" />
+        <EntityTypeShape EntityType="db_1526890_onlinejobModel.AspNetUser" Width="1.5" PointX="3" PointY="3.75" />
+        <EntityTypeShape EntityType="db_1526890_onlinejobModel.Country" Width="1.5" PointX="3" PointY="9.125" />
+        <EntityTypeShape EntityType="db_1526890_onlinejobModel.Religion" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="db_1526890_onlinejobModel.User" Width="1.5" PointX="5.25" PointY="3.25" />
+        <AssociationConnector Association="db_1526890_onlinejobModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="db_1526890_onlinejobModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="db_1526890_onlinejobModel.FK_User_AspNetUsers" />
+        <AssociationConnector Association="db_1526890_onlinejobModel.FK_User_Countries" />
+        <AssociationConnector Association="db_1526890_onlinejobModel.FK_User_Religion" />
+        <AssociationConnector Association="db_1526890_onlinejobModel.AspNetUserRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
