@@ -6,9 +6,14 @@
     <EntitySet Name="AspNetUserClaims" EntityType="db_1526890_onlinejobModel.AspNetUserClaim" />
     <EntitySet Name="AspNetUserLogins" EntityType="db_1526890_onlinejobModel.AspNetUserLogin" />
     <EntitySet Name="AspNetUsers" EntityType="db_1526890_onlinejobModel.AspNetUser" />
+    <EntitySet Name="CareerAreas" EntityType="db_1526890_onlinejobModel.CareerArea" />
     <EntitySet Name="Countries" EntityType="db_1526890_onlinejobModel.Country" />
     <EntitySet Name="Religions" EntityType="db_1526890_onlinejobModel.Religion" />
     <EntitySet Name="Users" EntityType="db_1526890_onlinejobModel.User" />
+    <AssociationSet Name="FK_User_AspNetRoles" Association="db_1526890_onlinejobModel.FK_User_AspNetRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="db_1526890_onlinejobModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
@@ -50,6 +55,7 @@
     </Key>
     <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="db_1526890_onlinejobModel.FK_User_AspNetRoles" FromRole="AspNetRole" ToRole="User" />
     <NavigationProperty Name="AspNetUsers" Relationship="db_1526890_onlinejobModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
   </EntityType>
   <EntityType Name="AspNetUserClaim">
@@ -94,6 +100,13 @@
     <NavigationProperty Name="Users" Relationship="db_1526890_onlinejobModel.FK_User_AspNetUsers" FromRole="AspNetUser" ToRole="User" />
     <NavigationProperty Name="AspNetRoles" Relationship="db_1526890_onlinejobModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
   </EntityType>
+  <EntityType Name="CareerArea">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="true" Unicode="true" />
+  </EntityType>
   <EntityType Name="Country">
     <Key>
       <PropertyRef Name="CountryID" />
@@ -117,16 +130,30 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="AspUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="true" Unicode="true" />
     <Property Name="IcNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="Address" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
     <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
     <Property Name="CountryId" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
     <Property Name="ReligionId" Type="Int32" Nullable="false" />
+    <Property Name="RoleId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetRole" Relationship="db_1526890_onlinejobModel.FK_User_AspNetRoles" FromRole="User" ToRole="AspNetRole" />
     <NavigationProperty Name="AspNetUser" Relationship="db_1526890_onlinejobModel.FK_User_AspNetUsers" FromRole="User" ToRole="AspNetUser" />
     <NavigationProperty Name="Country" Relationship="db_1526890_onlinejobModel.FK_User_Countries" FromRole="User" ToRole="Country" />
     <NavigationProperty Name="Religion" Relationship="db_1526890_onlinejobModel.FK_User_Religion" FromRole="User" ToRole="Religion" />
   </EntityType>
+  <Association Name="FK_User_AspNetRoles">
+    <End Type="db_1526890_onlinejobModel.AspNetRole" Role="AspNetRole" Multiplicity="0..1" />
+    <End Type="db_1526890_onlinejobModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRole">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Type="db_1526890_onlinejobModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
       <OnDelete Action="Cascade" />

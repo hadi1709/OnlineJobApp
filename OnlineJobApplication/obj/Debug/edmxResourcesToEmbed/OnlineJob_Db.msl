@@ -56,6 +56,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CareerAreas">
+      <EntityTypeMapping TypeName="db_1526890_onlinejobModel.CareerArea">
+        <MappingFragment StoreEntitySet="CareerAreas">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Countries">
       <EntityTypeMapping TypeName="db_1526890_onlinejobModel.Country">
         <MappingFragment StoreEntitySet="Countries">
@@ -76,6 +84,7 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="db_1526890_onlinejobModel.User">
         <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
           <ScalarProperty Name="ReligionId" ColumnName="ReligionId" />
           <ScalarProperty Name="CountryId" ColumnName="CountryId" />
           <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />

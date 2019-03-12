@@ -22,7 +22,9 @@ namespace OnlineJobApplication
         public string PhoneNumber { get; set; }
         public string CountryId { get; set; }
         public int ReligionId { get; set; }
+        public string RoleId { get; set; }
     
+        public virtual AspNetRole AspNetRole { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual Country Country { get; set; }
         public virtual Religion Religion { get; set; }

@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using OnlineJobApplication.Models;
@@ -79,6 +82,19 @@ namespace OnlineJobApplication.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    /// Redirect to specific page according to role.
+                    using (db_1526890_onlinejobEntities db = new db_1526890_onlinejobEntities())
+                    {
+                        var roleIdQuery = from user in db.Users
+                                          where user.AspNetUser.Email == model.Email
+                                          select user.AspNetRole.Name;
+
+                        if (roleIdQuery.ToList().Contains("Admin"))
+                        {
+                            return RedirectToAction("Index", "Manage");
+                        }
+                    }
+                    
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -162,7 +178,7 @@ namespace OnlineJobApplication.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
+                    UserManager.AddToRole(user.Id, "Jobseeker");
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -174,7 +190,7 @@ namespace OnlineJobApplication.Controllers
                     {
                         User obj = new User
                         {
-                            AspUserId= user.Id,
+                            AspUserId = user.Id,
                             Name = model.UserModel.Name,
                             Address = model.UserModel.Address,
                             IcNumber = model.UserModel.IcNumber,
