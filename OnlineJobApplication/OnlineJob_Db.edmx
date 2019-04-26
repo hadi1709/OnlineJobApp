@@ -81,6 +81,19 @@
           <Property Name="CountryName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Nationality" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateOpened" Type="datetime" Nullable="false" />
+          <Property Name="DateClosed" Type="datetime" Nullable="false" />
+          <Property Name="CareerAreasId" Type="int" Nullable="false" />
+          <Property Name="Qualification" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Religion">
           <Key>
             <PropertyRef Name="Id" />
@@ -158,6 +171,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Job_CareerAreas">
+          <End Role="CareerAreas" Type="Self.CareerAreas" Multiplicity="1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CareerAreas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="CareerAreasId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_AspNetRoles">
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="0..1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -215,6 +240,7 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CareerAreas" EntityType="Self.CareerAreas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Religion" EntityType="Self.Religion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -232,6 +258,10 @@
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Job_CareerAreas" Association="Self.FK_Job_CareerAreas">
+            <End Role="CareerAreas" EntitySet="CareerAreas" />
+            <End Role="Job" EntitySet="Job" />
           </AssociationSet>
           <AssociationSet Name="FK_User_AspNetRoles" Association="Self.FK_User_AspNetRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
@@ -291,6 +321,11 @@
           <AssociationSet Name="AspNetUserRoles" Association="db_1526890_onlinejobModel.AspNetUserRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="Jobs" EntityType="db_1526890_onlinejobModel.Job" />
+          <AssociationSet Name="FK_Job_CareerAreas" Association="db_1526890_onlinejobModel.FK_Job_CareerAreas">
+            <End Role="CareerArea" EntitySet="CareerAreas" />
+            <End Role="Job" EntitySet="Jobs" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
@@ -360,6 +395,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Jobs" Relationship="db_1526890_onlinejobModel.FK_Job_CareerAreas" FromRole="CareerArea" ToRole="Job" />
         </EntityType>
         <EntityType Name="Country">
           <Key>
@@ -476,6 +512,32 @@
           <End Type="db_1526890_onlinejobModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="db_1526890_onlinejobModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateOpened" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateClosed" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CareerAreasId" Type="Int32" Nullable="false" />
+          <Property Name="Qualification" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CareerArea" Relationship="db_1526890_onlinejobModel.FK_Job_CareerAreas" FromRole="Job" ToRole="CareerArea" />
+        </EntityType>
+        <Association Name="FK_Job_CareerAreas">
+          <End Type="db_1526890_onlinejobModel.CareerArea" Role="CareerArea" Multiplicity="1" />
+          <End Type="db_1526890_onlinejobModel.Job" Role="Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CareerArea">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="CareerAreasId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -585,6 +647,20 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Jobs">
+            <EntityTypeMapping TypeName="db_1526890_onlinejobModel.Job">
+              <MappingFragment StoreEntitySet="Job">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="CareerAreasId" ColumnName="CareerAreasId" />
+                <ScalarProperty Name="DateClosed" ColumnName="DateClosed" />
+                <ScalarProperty Name="DateOpened" ColumnName="DateOpened" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

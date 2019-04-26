@@ -5,12 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="55e09167518e487987c1176b278aa786" Name="Diagram1">
-        <EntityTypeShape EntityType="db_1526890_onlinejobModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="db_1526890_onlinejobModel.C__MigrationHistory" Width="1.5" PointX="2.75" PointY="4.75" />
         <EntityTypeShape EntityType="db_1526890_onlinejobModel.AspNetRole" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="db_1526890_onlinejobModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="7.625" />
-        <EntityTypeShape EntityType="db_1526890_onlinejobModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="10.375" />
+        <EntityTypeShape EntityType="db_1526890_onlinejobModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="10.25" />
+        <EntityTypeShape EntityType="db_1526890_onlinejobModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="7.625" />
         <EntityTypeShape EntityType="db_1526890_onlinejobModel.AspNetUser" Width="1.5" PointX="3" PointY="7.875" />
-        <EntityTypeShape EntityType="db_1526890_onlinejobModel.CareerArea" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="db_1526890_onlinejobModel.CareerArea" Width="1.5" PointX="0.75" PointY="1.375" />
         <EntityTypeShape EntityType="db_1526890_onlinejobModel.Country" Width="1.5" PointX="6" PointY="13.625" />
         <EntityTypeShape EntityType="db_1526890_onlinejobModel.Religion" Width="1.5" PointX="6" PointY="5.25" />
         <EntityTypeShape EntityType="db_1526890_onlinejobModel.User" Width="1.5" PointX="8.25" PointY="6.625" />
@@ -21,6 +21,8 @@
         <AssociationConnector Association="db_1526890_onlinejobModel.FK_User_Countries" />
         <AssociationConnector Association="db_1526890_onlinejobModel.FK_User_Religion" />
         <AssociationConnector Association="db_1526890_onlinejobModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="db_1526890_onlinejobModel.Job" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="db_1526890_onlinejobModel.FK_Job_CareerAreas" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

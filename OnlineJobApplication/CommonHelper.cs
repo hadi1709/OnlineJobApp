@@ -51,5 +51,31 @@ namespace OnlineJobApplication
                 throw;
             }
         }
+
+        public static List<CareerAreaModel> GetCareeerAreaList()
+        {
+            try
+            {
+                using (db_1526890_onlinejobEntities db = new db_1526890_onlinejobEntities())
+                {
+                    var queryCareerAreas = (from career in db.CareerAreas
+                                            select new CareerAreaModel
+                                            {
+                                                Id = career.Id,
+                                                Name = career.Name
+                                            }).ToList();
+
+                    return queryCareerAreas;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public const int StatusError = 2;
+
+        public const int StatusOk = 1;
     }
 }
