@@ -76,6 +76,19 @@
     <Property Name="CountryName" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Nationality" Type="nvarchar" MaxLength="100" Nullable="false" />
   </EntityType>
+  <EntityType Name="Job">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateOpened" Type="datetime" Nullable="false" />
+    <Property Name="DateClosed" Type="datetime" Nullable="false" />
+    <Property Name="CareerAreasId" Type="int" Nullable="false" />
+    <Property Name="Qualification" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
   <EntityType Name="Religion">
     <Key>
       <PropertyRef Name="Id" />
@@ -153,6 +166,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Job_CareerAreas">
+    <End Role="CareerAreas" Type="Self.CareerAreas" Multiplicity="1" />
+    <End Role="Job" Type="Self.Job" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CareerAreas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Job">
+        <PropertyRef Name="CareerAreasId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_User_AspNetRoles">
     <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="0..1" />
     <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -210,6 +235,7 @@
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CareerAreas" EntityType="Self.CareerAreas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Religion" EntityType="Self.Religion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -227,6 +253,10 @@
     <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Job_CareerAreas" Association="Self.FK_Job_CareerAreas">
+      <End Role="CareerAreas" EntitySet="CareerAreas" />
+      <End Role="Job" EntitySet="Job" />
     </AssociationSet>
     <AssociationSet Name="FK_User_AspNetRoles" Association="Self.FK_User_AspNetRoles">
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />

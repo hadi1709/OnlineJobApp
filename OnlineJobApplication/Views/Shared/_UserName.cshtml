@@ -1,0 +1,6 @@
+﻿@using Microsoft.AspNet.Identity
+
+<span class="user-name">
+    @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage"})
+</span>
+<span class="user-role">Administrator</span>

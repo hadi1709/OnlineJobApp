@@ -38,6 +38,11 @@
       <End Role="AspNetRole" EntitySet="AspNetRoles" />
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <EntitySet Name="Jobs" EntityType="db_1526890_onlinejobModel.Job" />
+    <AssociationSet Name="FK_Job_CareerAreas" Association="db_1526890_onlinejobModel.FK_Job_CareerAreas">
+      <End Role="CareerArea" EntitySet="CareerAreas" />
+      <End Role="Job" EntitySet="Jobs" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="C__MigrationHistory">
     <Key>
@@ -106,6 +111,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Jobs" Relationship="db_1526890_onlinejobModel.FK_Job_CareerAreas" FromRole="CareerArea" ToRole="Job" />
   </EntityType>
   <EntityType Name="Country">
     <Key>
@@ -221,5 +227,31 @@
   <Association Name="AspNetUserRoles">
     <End Type="db_1526890_onlinejobModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
     <End Type="db_1526890_onlinejobModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Job">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateOpened" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateClosed" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CareerAreasId" Type="Int32" Nullable="false" />
+    <Property Name="Qualification" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="CareerArea" Relationship="db_1526890_onlinejobModel.FK_Job_CareerAreas" FromRole="Job" ToRole="CareerArea" />
+  </EntityType>
+  <Association Name="FK_Job_CareerAreas">
+    <End Type="db_1526890_onlinejobModel.CareerArea" Role="CareerArea" Multiplicity="1" />
+    <End Type="db_1526890_onlinejobModel.Job" Role="Job" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CareerArea">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Job">
+        <PropertyRef Name="CareerAreasId" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>
