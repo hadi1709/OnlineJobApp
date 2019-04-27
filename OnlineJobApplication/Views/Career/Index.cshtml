@@ -1,0 +1,32 @@
+﻿@model OnlineJobApplication.ViewModels.Career.IndexViewModel
+<h2 class="text-center mt-2">All Job Opening</h2>
+<hr />
+<div class="row mt-2">
+    <div class="col-md-12">
+        <form class="form-inline float-right">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</div>
+<div class="row mt-2">
+    <div class="col-md-12">
+        <div id="jobList">
+            @{
+                for (int count = 0; count < Model.JobList.Count; count++)
+                {
+                    <a class="card mt-2 bg-light pointer nav-link" href="~/Career/JobDetails/@Model.JobList[count].Id">
+                        <div class="card-body">
+                            <h4 class="text-info">@Model.JobList[count].Title</h4>
+                            <h6><span class="badge badge-secondary">@Model.JobList[count].CareerAreas</span></h6>
+                            <p><i>Closing Date: @Model.JobList[count].DateClosedString</i></p>
+                        </div>
+                    </a>
+                }
+            }           
+        </div>
+    </div>
+</div>
+
+
+

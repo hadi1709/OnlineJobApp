@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using OnlineJobApplication.App_Data;
 using OnlineJobApplication.Models;
 
 namespace OnlineJobApplication.Controllers

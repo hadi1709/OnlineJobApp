@@ -23,6 +23,9 @@
         <AssociationConnector Association="db_1526890_onlinejobModel.AspNetUserRoles" />
         <EntityTypeShape EntityType="db_1526890_onlinejobModel.Job" Width="1.5" PointX="3" PointY="0.75" />
         <AssociationConnector Association="db_1526890_onlinejobModel.FK_Job_CareerAreas" />
+        <EntityTypeShape EntityType="db_1526890_onlinejobModel.UserJobApplication" Width="1.5" PointX="10.5" PointY="4.5" />
+        <AssociationConnector Association="db_1526890_onlinejobModel.FK_UserJobApplication_Job" />
+        <AssociationConnector Association="db_1526890_onlinejobModel.FK_UserJobApplication_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

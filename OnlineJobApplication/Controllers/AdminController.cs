@@ -1,4 +1,5 @@
-﻿using OnlineJobApplication.Models;
+﻿using OnlineJobApplication.App_Data;
+using OnlineJobApplication.Models;
 using OnlineJobApplication.ViewModels;
 using System;
 using System.Linq;
