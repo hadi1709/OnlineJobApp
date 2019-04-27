@@ -1,10 +1,49 @@
-﻿
+﻿@model OnlineJobApplication.ViewModels.JobListViewModel
 @{
-    ViewBag.Title = "JobList";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>JobList</h2>
+<h2>Job List</h2>
+<hr />
 <div class="row">
+    <div class="col align-self-center col-md-11">
+        <table class="table table-hover table-dark" id="jobList">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Date Opened</th>
+                    <th scope="col">Date Closed</th>
+                    <th scope="col">Career Area</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>           
+        </table>
+    </div>
 
 </div>
+@section styles{
+    <link href="~/DataTables/datatables.min.css" rel="stylesheet" />
+}
+@section scripts{
+    <script src="~/DataTables/datatables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var dataSet = @Html.Raw(Json.Encode(@Model.JobList));
+            $('#jobList').DataTable({
+                "processing": true,
+                "data": dataSet,
+                "columns": [
+                    { "data": "Title" },
+                    { "data": "DateOpenedString" },
+                    { "data": "DateClosedString" },
+                    { "data": "CareerAreas" },
+                    {
+                        "render": function (data, type, row, meta) {
+                            return '<span class="badge badge-warning pointer" href=""><i class="fa fa-pen"></i> Edit</span> <span class="badge badge-danger pointer"><i class="fa fa-trash"></i> Delete</span>';
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+}

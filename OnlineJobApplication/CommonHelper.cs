@@ -74,6 +74,40 @@ namespace OnlineJobApplication
             }
         }
 
+        public static List<JobModel> GetAllJobList()
+        {
+            try
+            {
+                using (db_1526890_onlinejobEntities db = new db_1526890_onlinejobEntities())
+                {
+                    var queryJobs = (from job in db.Jobs
+                                     where job.IsDeleted == false
+                                     select new JobModel
+                                     {
+                                         Id = job.Id,
+                                         CareerAreasId = job.CareerAreasId,
+                                         CareerAreas = job.CareerArea.Name,
+                                         DateOpened = job.DateOpened,
+                                         DateClosed = job.DateClosed,
+                                         Description = job.Description,
+                                         Qualification = job.Qualification,
+                                         Title = job.Title
+                                     }).ToList();
+
+                    foreach(var jobElement in queryJobs)
+                    {
+                        jobElement.DateOpenedString = jobElement.DateOpened.ToString("dd MMMM yyyy");
+                        jobElement.DateClosedString = jobElement.DateClosed.ToString("dd MMMM yyyy");
+                    }
+
+                    return queryJobs.OrderBy(x => x.DateOpened).ToList();
+                }
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+        }
         public const int StatusError = 2;
 
         public const int StatusOk = 1;
