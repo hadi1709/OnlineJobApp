@@ -241,6 +241,7 @@
     <Compile Include="User.cs">
       <DependentUpon>OnlineJob_Db.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\EditJobOfferViewModel.cs" />
     <Compile Include="ViewModels\JobListViewModel.cs" />
     <Compile Include="ViewModels\NewJobOfferViewModel.cs" />
   </ItemGroup>

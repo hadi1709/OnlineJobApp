@@ -6,6 +6,35 @@
 <h2>Job List</h2>
 <hr />
 <div class="row">
+    <div class="col align-self-center col-md-8">
+        @if (Model.JobStatus.Description != "")
+        {
+            if (Model.JobStatus.Code == CommonHelper.StatusOk)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Success! </strong> @Model.JobStatus.Description
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+            else if (Model.JobStatus.Code == CommonHelper.StatusError)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error! </strong> @Model.JobStatus.Description
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+            else
+            {
+
+            }
+        }
+    </div>
+</div>
+<div class="row">
     <div class="col align-self-center col-md-11">
         <table class="table table-hover table-dark" id="jobList">
             <thead>
@@ -39,7 +68,8 @@
                     { "data": "CareerAreas" },
                     {
                         "render": function (data, type, row, meta) {
-                            return '<span class="badge badge-warning pointer" href=""><i class="fa fa-pen"></i> Edit</span> <span class="badge badge-danger pointer"><i class="fa fa-trash"></i> Delete</span>';
+                            console.log(data)
+                            return '<a class="badge badge-warning pointer" href="/Admin/EditJobOffer/'+row.Id+'"><i class="fa fa-pen"></i> Edit</a> <a class="badge badge-danger pointer"><i class="fa fa-trash"></i> Delete</a>';
                         }
                     }
                 ]
