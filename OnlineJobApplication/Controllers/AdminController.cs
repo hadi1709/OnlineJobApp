@@ -18,7 +18,12 @@ namespace OnlineJobApplication.Controllers
             string status = TempData["Status"] != null ? TempData["Status"].ToString() : "";
             int statusCode = TempData["StatusCode"] != null ? Convert.ToInt32(TempData["StatusCode"].ToString()) : 0;
 
-            return View();
+            JobListViewModel viewModel = new JobListViewModel()
+            {
+                JobList = CommonHelper.GetAllJobList()
+            };
+
+            return View(viewModel);
         }
 
         [HttpGet]

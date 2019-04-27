@@ -7,7 +7,7 @@ namespace OnlineJobApplication.Models
 {
     public class JobModel
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public string Title { get; set; }
 
@@ -17,7 +17,13 @@ namespace OnlineJobApplication.Models
 
         public DateTime DateClosed { get; set; }
 
+        public string DateOpenedString { get; set; }
+
+        public string DateClosedString { get; set; }
+
         public int CareerAreasId { get; set; }
+
+        public string CareerAreas { get; set; }
 
         public string Qualification { get; set; }
 
