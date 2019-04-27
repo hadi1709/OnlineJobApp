@@ -20,24 +20,27 @@
                     <li class="nav-item">
                         <a class="nav-link" href="~/Home/Index">About Us</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Career Areas
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item">Marketing & Communications</a>
-                            <a class="dropdown-item">Sales</a>
-                            <a class="dropdown-item">Technology</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Locations
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item">Job Opportunities</a>
-                            <div class="dropdown-divider"></div>
-                        </div>
+                    @*<li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Career Areas
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item">Marketing & Communications</a>
+                                <a class="dropdown-item">Sales</a>
+                                <a class="dropdown-item">Technology</a>
+                            </div>
+                        </li>*@
+                    @*<li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Locations
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item">Job Opportunities</a>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                        </li>*@
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Career/Index">All Job Openings</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="~/Home/Index">Internships</a>
@@ -47,7 +50,7 @@
                     </li>
                 </ul>
             </div>
-        </div>       
+        </div>
         <div class="form-inline">
             @Html.Partial("_LoginPartial")
         </div>

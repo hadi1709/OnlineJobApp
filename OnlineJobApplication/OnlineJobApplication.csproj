@@ -177,38 +177,40 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="AspNetRole.cs">
+    <Compile Include="App_Data\AspNetRole.cs">
       <DependentUpon>OnlineJob_Db.tt</DependentUpon>
     </Compile>
-    <Compile Include="AspNetUser.cs">
+    <Compile Include="App_Data\AspNetUser.cs">
       <DependentUpon>OnlineJob_Db.tt</DependentUpon>
     </Compile>
-    <Compile Include="AspNetUserClaim.cs">
+    <Compile Include="App_Data\AspNetUserClaim.cs">
       <DependentUpon>OnlineJob_Db.tt</DependentUpon>
     </Compile>
-    <Compile Include="AspNetUserLogin.cs">
+    <Compile Include="App_Data\AspNetUserLogin.cs">
       <DependentUpon>OnlineJob_Db.tt</DependentUpon>
     </Compile>
-    <Compile Include="CareerArea.cs">
+    <Compile Include="App_Data\CareerArea.cs">
       <DependentUpon>OnlineJob_Db.tt</DependentUpon>
     </Compile>
     <Compile Include="CommonHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CareerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Country.cs">
+    <Compile Include="App_Data\Country.cs">
       <DependentUpon>OnlineJob_Db.tt</DependentUpon>
     </Compile>
-    <Compile Include="C__MigrationHistory.cs">
+    <Compile Include="App_Data\C__MigrationHistory.cs">
       <DependentUpon>OnlineJob_Db.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Job.cs">
+    <Compile Include="App_Data\Job.cs">
       <DependentUpon>OnlineJob_Db.tt</DependentUpon>
     </Compile>
+    <Compile Include="JobseekerAuthorize.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CareerAreaModel.cs" />
     <Compile Include="Models\CountryModel.cs" />
@@ -218,29 +220,34 @@
     <Compile Include="Models\ReligionModel.cs" />
     <Compile Include="Models\StatusModel.cs" />
     <Compile Include="Models\UserModel.cs" />
-    <Compile Include="OnlineJob_Db.Context.cs">
+    <Compile Include="App_Data\OnlineJob_Db.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>OnlineJob_Db.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="OnlineJob_Db.cs">
+    <Compile Include="App_Data\OnlineJob_Db.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>OnlineJob_Db.tt</DependentUpon>
     </Compile>
-    <Compile Include="OnlineJob_Db.Designer.cs">
+    <Compile Include="App_Data\OnlineJob_Db.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>OnlineJob_Db.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Religion.cs">
+    <Compile Include="App_Data\Religion.cs">
       <DependentUpon>OnlineJob_Db.tt</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="User.cs">
+    <Compile Include="App_Data\User.cs">
       <DependentUpon>OnlineJob_Db.tt</DependentUpon>
     </Compile>
+    <Compile Include="App_Data\UserJobApplication.cs">
+      <DependentUpon>OnlineJob_Db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Career\IndexViewModel.cs" />
+    <Compile Include="ViewModels\Career\JobDetailsViewModel.cs" />
     <Compile Include="ViewModels\EditJobOfferViewModel.cs" />
     <Compile Include="ViewModels\JobListViewModel.cs" />
     <Compile Include="ViewModels\NewJobOfferViewModel.cs" />
@@ -2143,21 +2150,21 @@
     <Content Include="fontawesome-free-5.7.2-web\webfonts\fa-solid-900.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="OnlineJob_Db.Context.tt">
+    <Content Include="App_Data\OnlineJob_Db.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>OnlineJob_Db.edmx</DependentUpon>
       <LastGenOutput>OnlineJob_Db.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="OnlineJob_Db.tt">
+    <Content Include="App_Data\OnlineJob_Db.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>OnlineJob_Db.edmx</DependentUpon>
       <LastGenOutput>OnlineJob_Db.cs</LastGenOutput>
     </Content>
-    <EntityDeploy Include="OnlineJob_Db.edmx">
+    <EntityDeploy Include="App_Data\OnlineJob_Db.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>OnlineJob_Db.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="OnlineJob_Db.edmx.diagram">
+    <Content Include="App_Data\OnlineJob_Db.edmx.diagram">
       <DependentUpon>OnlineJob_Db.edmx</DependentUpon>
     </Content>
     <Content Include="Scripts\dashboard.js" />
@@ -2316,16 +2323,15 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\CareerArea\Index.cshtml" />
+    <Content Include="Views\Career\Index.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Shared\_UserName.cshtml" />
     <Content Include="Views\Admin\JobList.cshtml" />
     <Content Include="Views\Admin\NewJobOffer.cshtml" />
     <Content Include="Views\Admin\EditJobOffer.cshtml" />
+    <Content Include="Views\Career\JobDetails.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />

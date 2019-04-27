@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OnlineJobApplication
+namespace OnlineJobApplication.App_Data
 {
     using System;
     using System.Data.Entity;
@@ -35,5 +35,6 @@ namespace OnlineJobApplication
         public virtual DbSet<Religion> Religions { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Job> Jobs { get; set; }
+        public virtual DbSet<UserJobApplication> UserJobApplications { get; set; }
     }
 }

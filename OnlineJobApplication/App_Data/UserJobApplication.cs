@@ -7,16 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OnlineJobApplication
+namespace OnlineJobApplication.App_Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class C__MigrationHistory
+    public partial class UserJobApplication
     {
-        public string MigrationId { get; set; }
-        public string ContextKey { get; set; }
-        public byte[] Model { get; set; }
-        public string ProductVersion { get; set; }
+        public int Id { get; set; }
+        public int JobId { get; set; }
+        public int UserId { get; set; }
+        public System.DateTime Date { get; set; }
+    
+        public virtual Job Job { get; set; }
+        public virtual User User { get; set; }
     }
 }

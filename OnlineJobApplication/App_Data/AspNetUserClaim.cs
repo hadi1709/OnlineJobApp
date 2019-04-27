@@ -7,26 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OnlineJobApplication
+namespace OnlineJobApplication.App_Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class AspNetUserClaim
     {
         public int Id { get; set; }
-        public string AspUserId { get; set; }
-        public string Name { get; set; }
-        public string IcNumber { get; set; }
-        public string Address { get; set; }
-        public string PhoneNumber { get; set; }
-        public string CountryId { get; set; }
-        public int ReligionId { get; set; }
-        public string RoleId { get; set; }
+        public string UserId { get; set; }
+        public string ClaimType { get; set; }
+        public string ClaimValue { get; set; }
     
-        public virtual AspNetRole AspNetRole { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
-        public virtual Country Country { get; set; }
-        public virtual Religion Religion { get; set; }
     }
 }

@@ -7,22 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OnlineJobApplication
+namespace OnlineJobApplication.App_Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Job
+    public partial class AspNetUserLogin
     {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public System.DateTime DateOpened { get; set; }
-        public System.DateTime DateClosed { get; set; }
-        public int CareerAreasId { get; set; }
-        public string Qualification { get; set; }
-        public bool IsDeleted { get; set; }
+        public string LoginProvider { get; set; }
+        public string ProviderKey { get; set; }
+        public string UserId { get; set; }
     
-        public virtual CareerArea CareerArea { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

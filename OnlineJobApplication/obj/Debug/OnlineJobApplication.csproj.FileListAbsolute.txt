@@ -211,8 +211,8 @@ C:\Projects\OnlineJobApp\OnlineJobApplication\bin\Microsoft.Owin.Security.OAuth.
 C:\Projects\OnlineJobApp\OnlineJobApplication\bin\System.Diagnostics.DiagnosticSource.xml
 C:\Projects\OnlineJobApp\OnlineJobApplication\bin\Microsoft.AspNet.TelemetryCorrelation.xml
 C:\Projects\OnlineJobApp\OnlineJobApplication\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Projects\OnlineJobApp\OnlineJobApplication\obj\Debug\OnlineJobApplication.csprojAssemblyReference.cache
 C:\Projects\OnlineJobApp\OnlineJobApplication\obj\Debug\OnlineJobApplication.csproj.CoreCompileInputs.cache
 C:\Projects\OnlineJobApp\OnlineJobApplication\obj\Debug\OnlineJobApplication.csproj.CopyComplete
 C:\Projects\OnlineJobApp\OnlineJobApplication\obj\Debug\OnlineJobApplication.dll
 C:\Projects\OnlineJobApp\OnlineJobApplication\obj\Debug\OnlineJobApplication.pdb
+C:\Projects\OnlineJobApp\OnlineJobApplication\obj\Debug\OnlineJobApplication.csprojAssemblyReference.cache

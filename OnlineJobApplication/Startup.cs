@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
+using OnlineJobApplication.App_Data;
 using OnlineJobApplication.Models;
 using Owin;
 

@@ -143,3 +143,8 @@
 .zoom-out {
     cursor: zoom-out;
 }
+
+.overflow {
+    height: 80vh;
+    overflow-y: scroll;
+}

@@ -7,24 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OnlineJobApplication
+namespace OnlineJobApplication.App_Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Country
+    public partial class CareerArea
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Country()
+        public CareerArea()
         {
-            this.Users = new HashSet<User>();
+            this.Jobs = new HashSet<Job>();
         }
     
-        public string CountryID { get; set; }
-        public string CountryName { get; set; }
-        public string Nationality { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<Job> Jobs { get; set; }
     }
 }

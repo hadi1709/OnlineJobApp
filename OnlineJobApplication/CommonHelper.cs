@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using OnlineJobApplication.App_Data;
 using OnlineJobApplication.Models;
 
 namespace OnlineJobApplication
@@ -115,7 +116,7 @@ namespace OnlineJobApplication
             {
                 using (db_1526890_onlinejobEntities db = new db_1526890_onlinejobEntities())
                 {
-                    var queryJob = (from job in db.Jobs
+                    var queryJobs = (from job in db.Jobs
                                     where job.Id == jobId
                                     select new JobModel
                                     {
@@ -129,7 +130,10 @@ namespace OnlineJobApplication
                                         Title = job.Title
                                     }).FirstOrDefault();
 
-                    return queryJob;
+                        queryJobs.DateOpenedString = queryJobs.DateOpened.ToString("dd MMMM yyyy");
+                        queryJobs.DateClosedString = queryJobs.DateClosed.ToString("dd MMMM yyyy");
+
+                    return queryJobs;
                 }
             }
             catch (Exception ex)
@@ -137,6 +141,62 @@ namespace OnlineJobApplication
                 throw;
             }
             
+        }
+
+        public static List<JobModel> GetJobListbyDate()
+        {
+            try
+            {
+                using (db_1526890_onlinejobEntities db = new db_1526890_onlinejobEntities())
+                {
+                    DateTime currentDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                    var queryJobs = (from job in db.Jobs
+                                     where job.IsDeleted == false &&
+                                     job.DateOpened <= currentDate && job.DateClosed >= currentDate
+                                     select new JobModel
+                                     {
+                                         Id = job.Id,
+                                         CareerAreasId = job.CareerAreasId,
+                                         CareerAreas = job.CareerArea.Name,
+                                         DateOpened = job.DateOpened,
+                                         DateClosed = job.DateClosed,
+                                         Description = job.Description,
+                                         Qualification = job.Qualification,
+                                         Title = job.Title
+                                     }).ToList();
+
+                    foreach (var jobElement in queryJobs)
+                    {
+                        jobElement.DateOpenedString = jobElement.DateOpened.ToString("dd MMMM yyyy");
+                        jobElement.DateClosedString = jobElement.DateClosed.ToString("dd MMMM yyyy");
+                    }
+
+                    return queryJobs.OrderBy(x => x.DateOpened).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public static int GetUserByAspId (string aspUserId)
+        {
+            try
+            {
+                using (db_1526890_onlinejobEntities db = new db_1526890_onlinejobEntities())
+                {
+                    var queryUser = (from user in db.Users
+                                     where user.AspUserId == aspUserId
+                                     select user.Id).FirstOrDefault();
+
+                    return queryUser;
+                }
+            }
+            catch(Exception ex)
+            {
+                return 0;
+            }
         }
         public const int StatusError = 2;
 

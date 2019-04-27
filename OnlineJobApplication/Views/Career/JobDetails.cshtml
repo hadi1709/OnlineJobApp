@@ -1,0 +1,80 @@
+﻿@model OnlineJobApplication.ViewModels.Career.JobDetailsViewModel
+
+<h1 class="mt-3 text-info">@Model.JobModel.Title</h1>
+@if (Model.JobStatus.Description != "")
+{
+    if (Model.JobStatus.Code == CommonHelper.StatusOk)
+    {
+        <div class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content bg-success text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Submited!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>@Model.JobStatus.Description</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @section scripts {
+            <script>
+                $('.modal').modal('show')
+            </script>
+        }
+    }
+    else if (Model.JobStatus.Code == CommonHelper.StatusError)
+    {
+        <div class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content bg-danger text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Error!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>@Model.JobStatus.Description</p>
+                    </div>                   
+                </div>
+            </div>
+        </div>
+        @section scripts {
+            <script>
+                $('.modal').modal('show')
+            </script>
+        }
+    }
+    else
+    {
+
+    }
+}
+<div class="row">
+    <div class="col-md-3">
+        <hr />
+        <label>Closing Date: </label>
+        <h3><i class="badge badge-warning">@Model.JobModel.DateClosedString</i></h3>
+        <hr />
+        <label>Career Area: </label>
+        <h5><span class="badge badge-secondary">@Model.JobModel.CareerAreas</span></h5>
+        <hr />
+        @using (Html.BeginForm("Apply", "Career", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.HiddenFor(m => m.JobModel.Id)
+            <button type="submit" class="btn btn-dark btn-block">APPLY</button>
+        }
+    </div>
+    <div class="border-left col-md-9">
+        <div class="overflow">
+            <label><strong>Description</strong></label>
+            @Html.Raw(Model.JobModel.Description)
+            <label><strong>Qualification</strong></label>
+            @Html.Raw(Model.JobModel.Qualification)
+        </div>
+    </div>
+</div>
