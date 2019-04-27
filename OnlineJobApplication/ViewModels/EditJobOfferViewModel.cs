@@ -6,9 +6,11 @@ using System.Web;
 
 namespace OnlineJobApplication.ViewModels
 {
-    public class JobListViewModel
+    public class EditJobOfferViewModel
     {
-        public List<JobModel> JobList { get; set; } 
+        public JobModel JobModel { get; set; }
+
+        public List<CareerAreaModel> CareerList { get; set; }
 
         public StatusModel JobStatus { get; set; }
     }

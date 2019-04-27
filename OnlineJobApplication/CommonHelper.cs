@@ -108,6 +108,36 @@ namespace OnlineJobApplication
                 throw;
             }
         }
+
+        public static JobModel GetJobById(int? jobId)
+        {
+            try
+            {
+                using (db_1526890_onlinejobEntities db = new db_1526890_onlinejobEntities())
+                {
+                    var queryJob = (from job in db.Jobs
+                                    where job.Id == jobId
+                                    select new JobModel
+                                    {
+                                        Id = job.Id,
+                                        CareerAreasId = job.CareerAreasId,
+                                        CareerAreas = job.CareerArea.Name,
+                                        DateOpened = job.DateOpened,
+                                        DateClosed = job.DateClosed,
+                                        Description = job.Description,
+                                        Qualification = job.Qualification,
+                                        Title = job.Title
+                                    }).FirstOrDefault();
+
+                    return queryJob;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            
+        }
         public const int StatusError = 2;
 
         public const int StatusOk = 1;
