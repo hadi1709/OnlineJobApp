@@ -128,5 +128,24 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="UserJobApplicationStages">
+      <EntityTypeMapping TypeName="db_1526890_onlinejobModel.UserJobApplicationStage">
+        <MappingFragment StoreEntitySet="UserJobApplicationStage">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="UserJobApplicationId" ColumnName="UserJobApplicationId" />
+          <ScalarProperty Name="StageId" ColumnName="StageId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stages">
+      <EntityTypeMapping TypeName="db_1526890_onlinejobModel.Stage">
+        <MappingFragment StoreEntitySet="Stage">
+          <ScalarProperty Name="IndexNumber" ColumnName="IndexNumber" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

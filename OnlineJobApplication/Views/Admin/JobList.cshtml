@@ -1,4 +1,4 @@
-﻿@model OnlineJobApplication.ViewModels.JobListViewModel
+﻿@model OnlineJobApplication.ViewModels.Admin.JobListViewModel
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
@@ -48,7 +48,6 @@
             </thead>           
         </table>
     </div>
-
 </div>
 @section styles{
     <link href="~/DataTables/datatables.min.css" rel="stylesheet" />
@@ -62,13 +61,16 @@
                 "processing": true,
                 "data": dataSet,
                 "columns": [
-                    { "data": "Title" },
+                    {
+                        "render": function (data, type, row, meta) {
+                            return '<a class="pointer nav-link text-light" href="/Admin/JobDetails/' + row.Id + '">' + row.Title +' <i class="fa fa-info-circle"></i></a>';
+                        }
+                    },
                     { "data": "DateOpenedString" },
                     { "data": "DateClosedString" },
                     { "data": "CareerAreas" },
                     {
                         "render": function (data, type, row, meta) {
-                            console.log(data)
                             return '<a class="badge badge-warning pointer" href="/Admin/EditJobOffer/'+row.Id+'"><i class="fa fa-pen"></i> Edit</a> <a class="badge badge-danger pointer"><i class="fa fa-trash"></i> Delete</a>';
                         }
                     }

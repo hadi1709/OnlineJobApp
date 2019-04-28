@@ -12,21 +12,18 @@ namespace OnlineJobApplication.App_Data
     using System;
     using System.Collections.Generic;
     
-    public partial class UserJobApplication
+    public partial class Stage
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UserJobApplication()
+        public Stage()
         {
             this.UserJobApplicationStages = new HashSet<UserJobApplicationStage>();
         }
     
         public int Id { get; set; }
-        public int JobId { get; set; }
-        public int UserId { get; set; }
-        public System.DateTime Date { get; set; }
+        public string Name { get; set; }
+        public Nullable<int> IndexNumber { get; set; }
     
-        public virtual Job Job { get; set; }
-        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserJobApplicationStage> UserJobApplicationStages { get; set; }
     }

@@ -172,6 +172,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Data\Stage.cs">
+      <DependentUpon>OnlineJob_Db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\UserJobApplicationStage.cs">
+      <DependentUpon>OnlineJob_Db.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -246,11 +252,12 @@
     <Compile Include="App_Data\UserJobApplication.cs">
       <DependentUpon>OnlineJob_Db.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Admin\JobDetailsViewModel.cs" />
     <Compile Include="ViewModels\Career\IndexViewModel.cs" />
     <Compile Include="ViewModels\Career\JobDetailsViewModel.cs" />
-    <Compile Include="ViewModels\EditJobOfferViewModel.cs" />
-    <Compile Include="ViewModels\JobListViewModel.cs" />
-    <Compile Include="ViewModels\NewJobOfferViewModel.cs" />
+    <Compile Include="ViewModels\Admin\EditJobOfferViewModel.cs" />
+    <Compile Include="ViewModels\Admin\JobListViewModel.cs" />
+    <Compile Include="ViewModels\Admin\NewJobOfferViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ckeditor\adapters\jquery.js" />
@@ -2330,6 +2337,8 @@
     <Content Include="Views\Admin\NewJobOffer.cshtml" />
     <Content Include="Views\Admin\EditJobOffer.cshtml" />
     <Content Include="Views\Career\JobDetails.cshtml" />
+    <Content Include="Views\Admin\JobDetails.cshtml" />
+    <Content Include="Views\Admin\_UserModal.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

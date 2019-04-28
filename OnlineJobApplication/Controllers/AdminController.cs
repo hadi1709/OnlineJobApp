@@ -1,8 +1,9 @@
 ﻿using OnlineJobApplication.App_Data;
 using OnlineJobApplication.Models;
-using OnlineJobApplication.ViewModels;
+using OnlineJobApplication.ViewModels.Admin;
 using System;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 
 namespace OnlineJobApplication.Controllers
@@ -162,6 +163,43 @@ namespace OnlineJobApplication.Controllers
 
                 return RedirectToAction("EditJobOffer", viewModel.JobModel.Id);
             }
+        }
+
+        [HttpGet]
+        public ActionResult JobDetails(string id)
+        {
+            try
+            {
+                int jobId = Int32.Parse(id);
+
+                JobDetailsViewModel viewModel = new JobDetailsViewModel()
+                {
+                    JobModel = CommonHelper.GetJobById(jobId),
+                    UserList = CommonHelper.GetUserModelByJobAppliedId(jobId)                   
+                };
+
+                return this.View(viewModel);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public ActionResult _UserModal(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            JobDetailsViewModel viewModel = new JobDetailsViewModel()
+            {
+                User = CommonHelper.GetUserById(id)
+            };
+
+            return PartialView("_UserModal", viewModel);
         }
     }
 }

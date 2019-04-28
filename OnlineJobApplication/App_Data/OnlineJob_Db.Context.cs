@@ -36,5 +36,7 @@ namespace OnlineJobApplication.App_Data
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Job> Jobs { get; set; }
         public virtual DbSet<UserJobApplication> UserJobApplications { get; set; }
+        public virtual DbSet<UserJobApplicationStage> UserJobApplicationStages { get; set; }
+        public virtual DbSet<Stage> Stages { get; set; }
     }
 }

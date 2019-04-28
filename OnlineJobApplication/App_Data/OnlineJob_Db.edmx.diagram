@@ -26,6 +26,10 @@
         <EntityTypeShape EntityType="db_1526890_onlinejobModel.UserJobApplication" Width="1.5" PointX="10.5" PointY="4.5" />
         <AssociationConnector Association="db_1526890_onlinejobModel.FK_UserJobApplication_Job" />
         <AssociationConnector Association="db_1526890_onlinejobModel.FK_UserJobApplication_User" />
+        <EntityTypeShape EntityType="db_1526890_onlinejobModel.UserJobApplicationStage" Width="1.5" PointX="12.75" PointY="4.625" />
+        <AssociationConnector Association="db_1526890_onlinejobModel.FK_UserJobApplicationStage_UserJobApplication" />
+        <EntityTypeShape EntityType="db_1526890_onlinejobModel.Stage" Width="1.5" PointX="5.375" PointY="0.875" />
+        <AssociationConnector Association="db_1526890_onlinejobModel.FK_UserJobApplicationStage_Stage" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
