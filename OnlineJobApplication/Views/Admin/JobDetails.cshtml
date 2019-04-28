@@ -1,0 +1,71 @@
+﻿@model OnlineJobApplication.ViewModels.Admin.JobDetailsViewModel
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- The Modal -->
+<div id="userModalWrapper">
+    @Html.Partial("_UserModal")
+</div>
+<h2 class="text-info"><span class="text-black-50">Job Title:</span> @Model.JobModel.Title</h2>
+<hr />
+<div class="row">
+    <div class="col align-self-center col-md-11">
+        <h5>Job Applicants</h5>
+        <table class="table table-hover table-dark" id="userList">
+            <thead>
+                <tr>
+                    <th scope="col">User</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+@section styles{
+    <link href="~/DataTables/datatables.min.css" rel="stylesheet" />
+}
+@section scripts{
+    <script src="~/DataTables/datatables.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script>
+        $(document).ready(function () {
+            var dataSet = @Html.Raw(Json.Encode(@Model.UserList));
+            $('#userList').DataTable({
+                "processing": true,
+                "data": dataSet,
+                "columns": [
+                    {
+                        "render": function (data, type, row, meta) {
+                            return '<a class="pointer nav-link" onclick="userModal('+row.Id+')">' +
+                                '<label class="pointer text-light">' + row.Name + ', ' + row.IcNumber +'</label>' +
+                            '</a > ';
+                        }
+                    },
+                    {
+
+                        "render": function (data, type, row, meta) {
+                            return '<a class="badge badge-warning pointer" href="/Admin/EditJobOffer/'+row.Id+'"><i class="fa fa-pen"></i> Edit</a> <a class="badge badge-danger pointer"><i class="fa fa-trash"></i> Delete</a>';
+                        }
+                    }
+                ]
+            });
+        });
+
+        function userModal(userId) {
+            $.ajax({
+                url: '/Admin/_UserModal/' + userId,
+                success: function (data) {
+                    $('#userModalWrapper').html(data);
+                    $('#userModal').data('validator', null);
+                    $.validator.unobtrusive.parse('#userModal');
+                    $(function () {
+                        $('#userModal').modal('show');
+                    });
+                }
+            });
+        }
+    </script>
+}
+

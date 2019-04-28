@@ -4,13 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace OnlineJobApplication.ViewModels
+namespace OnlineJobApplication.ViewModels.Admin
 {
-    public class EditJobOfferViewModel
+    public class JobListViewModel
     {
-        public JobModel JobModel { get; set; }
-
-        public List<CareerAreaModel> CareerList { get; set; }
+        public List<JobModel> JobList { get; set; } 
 
         public StatusModel JobStatus { get; set; }
     }

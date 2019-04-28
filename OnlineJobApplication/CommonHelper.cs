@@ -198,6 +198,61 @@ namespace OnlineJobApplication
                 return 0;
             }
         }
+
+        public static List<UserModel> GetUserModelByJobAppliedId(int jobId)
+        {
+            try
+            {
+                using (db_1526890_onlinejobEntities db = new db_1526890_onlinejobEntities())
+                {
+                    var queryUserJob = (from job in db.UserJobApplications
+                                        where job.JobId == jobId
+                                        select new UserModel
+                                        {
+                                            Id = job.User.Id,
+                                            Name = job.User.Name,
+                                            Address = job.User.Address,
+                                            Country = job.User.Country.CountryName,
+                                            IcNumber = job.User.IcNumber,
+                                            PhoneNumber = job.User.PhoneNumber,
+                                            Religion = job.User.Religion.Name
+                                        }).ToList();
+
+                    return queryUserJob;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public static UserModel GetUserById(int? userId)
+        {
+            try
+            {
+                using (db_1526890_onlinejobEntities db = new db_1526890_onlinejobEntities())
+                {
+                    var queryUser = (from user in db.Users
+                                     where user.Id == userId
+                                     select new UserModel {
+                                         Id = user.Id,
+                                         Name = user.Name,
+                                         Address = user.Address,
+                                         Country = user.Country.CountryName,
+                                         IcNumber = user.IcNumber,
+                                         PhoneNumber = user.PhoneNumber,
+                                         Religion = user.Religion.Name
+                                     }).FirstOrDefault();
+
+                    return queryUser;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
         public const int StatusError = 2;
 
         public const int StatusOk = 1;
