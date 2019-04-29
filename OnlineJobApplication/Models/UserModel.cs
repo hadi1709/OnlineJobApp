@@ -28,5 +28,7 @@ namespace OnlineJobApplication.Models
         public int ReligionId { get; set; }
 
         public string Religion { get; set; }      
+
+        public string CurrentStage { get; set; }
     }
 }

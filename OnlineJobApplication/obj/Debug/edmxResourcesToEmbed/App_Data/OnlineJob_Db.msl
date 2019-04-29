@@ -73,9 +73,32 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Jobs">
+      <EntityTypeMapping TypeName="db_1526890_onlinejobModel.Job">
+        <MappingFragment StoreEntitySet="Job">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+          <ScalarProperty Name="CareerAreasId" ColumnName="CareerAreasId" />
+          <ScalarProperty Name="DateClosed" ColumnName="DateClosed" />
+          <ScalarProperty Name="DateOpened" ColumnName="DateOpened" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Religions">
       <EntityTypeMapping TypeName="db_1526890_onlinejobModel.Religion">
         <MappingFragment StoreEntitySet="Religion">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stages">
+      <EntityTypeMapping TypeName="db_1526890_onlinejobModel.Stage">
+        <MappingFragment StoreEntitySet="Stage">
+          <ScalarProperty Name="IndexNumber" ColumnName="IndexNumber" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
@@ -92,28 +115,6 @@
           <ScalarProperty Name="IcNumber" ColumnName="IcNumber" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="AspUserId" ColumnName="AspUserId" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <AssociationSetMapping Name="AspNetUserRoles" TypeName="db_1526890_onlinejobModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-      <EndProperty Name="AspNetUser">
-        <ScalarProperty Name="Id" ColumnName="UserId" />
-      </EndProperty>
-      <EndProperty Name="AspNetRole">
-        <ScalarProperty Name="Id" ColumnName="RoleId" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <EntitySetMapping Name="Jobs">
-      <EntityTypeMapping TypeName="db_1526890_onlinejobModel.Job">
-        <MappingFragment StoreEntitySet="Job">
-          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-          <ScalarProperty Name="Qualification" ColumnName="Qualification" />
-          <ScalarProperty Name="CareerAreasId" ColumnName="CareerAreasId" />
-          <ScalarProperty Name="DateClosed" ColumnName="DateClosed" />
-          <ScalarProperty Name="DateOpened" ColumnName="DateOpened" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -138,11 +139,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Stages">
-      <EntityTypeMapping TypeName="db_1526890_onlinejobModel.Stage">
-        <MappingFragment StoreEntitySet="Stage">
-          <ScalarProperty Name="IndexNumber" ColumnName="IndexNumber" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="db_1526890_onlinejobModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetUser">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="AspNetRole">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Emails">
+      <EntityTypeMapping TypeName="db_1526890_onlinejobModel.Email">
+        <MappingFragment StoreEntitySet="Email">
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Email1" ColumnName="Email" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

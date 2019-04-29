@@ -43,10 +43,10 @@
                     </div>
                 </div>
                 <div class="sidebar-header">
-                    @*<div class="user-pic">
-                            <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
-                                 alt="User picture">
-                        </div>*@
+                    <div class="user-pic">
+                        <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                             alt="User picture">
+                    </div>
                     <div class="user-info">
                         @Html.Partial("_UserName")
                     </div>
@@ -67,59 +67,84 @@
                 <!-- sidebar-search  -->
                 <div class="sidebar-menu">
                     <ul>
-                        <li class="header-menu">
-                            <span>General</span>
-                        </li>
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="fa fa-tachometer-alt"></i>
-                                <span>Dashboard</span>
-                            </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            Quick Stat
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="fa fa-shopping-bag"></i>
-                                <span>Job Manager</span>
-                            </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="~/Admin/NewJobOffer">
-                                            Add New Job Offer
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="~/Admin/JobList">
-                                            Job List
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-calendar"></i>
-                                <span>Calendar</span>
-                            </a>
-                        </li>
-                        <li class="header-menu">
-                            <span>User Manager</span>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-user-tie"></i>
-                                <span>Job Seeker</span>
-                            </a>
-                        </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="header-menu">
+                                <span>General</span>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="fa fa-tachometer-alt"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                Quick Stat
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="fa fa-shopping-bag"></i>
+                                    <span>Job Manager</span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="~/Admin/NewJobOffer">
+                                                Add New Job Offer
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Admin/JobList">
+                                                Job List
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-calendar"></i>
+                                    <span>Calendar</span>
+                                </a>
+                            </li>
+                            <li class="header-menu">
+                                <span>User Manager</span>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-user-tie"></i>
+                                    <span>Job Seeker</span>
+                                </a>
+                            </li>
+                        }
+                        else if (User.IsInRole("Jobseeker"))
+                        {
+                            <li>
+                                <a href="~/Jobseeker/JobStatus">
+                                    <i class="fa fa-shopping-bag"></i>
+                                    <span>Job Applied</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-file"></i>
+                                    <span>Curriculum Vitae</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="~/Career/Index">
+                                    <i class="fa fa-shopping-bag"></i>
+                                    <span>Job Opening</span>
+                                </a>
+                            </li>
+                        }
+
                     </ul>
                 </div>
                 <!-- sidebar-menu  -->

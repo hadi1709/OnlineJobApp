@@ -81,6 +81,14 @@
           <Property Name="CountryName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Nationality" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Message" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="Job">
           <Key>
             <PropertyRef Name="Id" />
@@ -127,7 +135,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="JobId" Type="int" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
@@ -138,7 +146,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StageId" Type="int" Nullable="false" />
-          <Property Name="UserJobApplicationId" Type="int" Nullable="false" />
+          <Property Name="UserJobApplicationId" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -314,6 +322,7 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CareerAreas" EntityType="Self.CareerAreas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Email" EntityType="Self.Email" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Religion" EntityType="Self.Religion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stage" EntityType="Self.Stage" Schema="dbo" store:Type="Tables" />
@@ -385,8 +394,12 @@
           <EntitySet Name="AspNetUsers" EntityType="db_1526890_onlinejobModel.AspNetUser" />
           <EntitySet Name="CareerAreas" EntityType="db_1526890_onlinejobModel.CareerArea" />
           <EntitySet Name="Countries" EntityType="db_1526890_onlinejobModel.Country" />
+          <EntitySet Name="Jobs" EntityType="db_1526890_onlinejobModel.Job" />
           <EntitySet Name="Religions" EntityType="db_1526890_onlinejobModel.Religion" />
+          <EntitySet Name="Stages" EntityType="db_1526890_onlinejobModel.Stage" />
           <EntitySet Name="Users" EntityType="db_1526890_onlinejobModel.User" />
+          <EntitySet Name="UserJobApplications" EntityType="db_1526890_onlinejobModel.UserJobApplication" />
+          <EntitySet Name="UserJobApplicationStages" EntityType="db_1526890_onlinejobModel.UserJobApplicationStage" />
           <AssociationSet Name="FK_User_AspNetRoles" Association="db_1526890_onlinejobModel.FK_User_AspNetRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="User" EntitySet="Users" />
@@ -403,42 +416,39 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <AssociationSet Name="FK_Job_CareerAreas" Association="db_1526890_onlinejobModel.FK_Job_CareerAreas">
+            <End Role="CareerArea" EntitySet="CareerAreas" />
+            <End Role="Job" EntitySet="Jobs" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_Countries" Association="db_1526890_onlinejobModel.FK_User_Countries">
             <End Role="Country" EntitySet="Countries" />
             <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserJobApplication_Job" Association="db_1526890_onlinejobModel.FK_UserJobApplication_Job">
+            <End Role="Job" EntitySet="Jobs" />
+            <End Role="UserJobApplication" EntitySet="UserJobApplications" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Religion" Association="db_1526890_onlinejobModel.FK_User_Religion">
             <End Role="Religion" EntitySet="Religions" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
-          <AssociationSet Name="AspNetUserRoles" Association="db_1526890_onlinejobModel.AspNetUserRoles">
-            <End Role="AspNetRole" EntitySet="AspNetRoles" />
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-          </AssociationSet>
-          <EntitySet Name="Jobs" EntityType="db_1526890_onlinejobModel.Job" />
-          <AssociationSet Name="FK_Job_CareerAreas" Association="db_1526890_onlinejobModel.FK_Job_CareerAreas">
-            <End Role="CareerArea" EntitySet="CareerAreas" />
-            <End Role="Job" EntitySet="Jobs" />
-          </AssociationSet>
-          <EntitySet Name="UserJobApplications" EntityType="db_1526890_onlinejobModel.UserJobApplication" />
-          <AssociationSet Name="FK_UserJobApplication_Job" Association="db_1526890_onlinejobModel.FK_UserJobApplication_Job">
-            <End Role="Job" EntitySet="Jobs" />
-            <End Role="UserJobApplication" EntitySet="UserJobApplications" />
+          <AssociationSet Name="FK_UserJobApplicationStage_Stage" Association="db_1526890_onlinejobModel.FK_UserJobApplicationStage_Stage">
+            <End Role="Stage" EntitySet="Stages" />
+            <End Role="UserJobApplicationStage" EntitySet="UserJobApplicationStages" />
           </AssociationSet>
           <AssociationSet Name="FK_UserJobApplication_User" Association="db_1526890_onlinejobModel.FK_UserJobApplication_User">
             <End Role="User" EntitySet="Users" />
             <End Role="UserJobApplication" EntitySet="UserJobApplications" />
           </AssociationSet>
-          <EntitySet Name="UserJobApplicationStages" EntityType="db_1526890_onlinejobModel.UserJobApplicationStage" />
           <AssociationSet Name="FK_UserJobApplicationStage_UserJobApplication" Association="db_1526890_onlinejobModel.FK_UserJobApplicationStage_UserJobApplication">
             <End Role="UserJobApplication" EntitySet="UserJobApplications" />
             <End Role="UserJobApplicationStage" EntitySet="UserJobApplicationStages" />
           </AssociationSet>
-          <EntitySet Name="Stages" EntityType="db_1526890_onlinejobModel.Stage" />
-          <AssociationSet Name="FK_UserJobApplicationStage_Stage" Association="db_1526890_onlinejobModel.FK_UserJobApplicationStage_Stage">
-            <End Role="Stage" EntitySet="Stages" />
-            <End Role="UserJobApplicationStage" EntitySet="UserJobApplicationStages" />
+          <AssociationSet Name="AspNetUserRoles" Association="db_1526890_onlinejobModel.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="Emails" EntityType="db_1526890_onlinejobModel.Email" />
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -518,6 +528,21 @@
           <Property Name="Nationality" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Users" Relationship="db_1526890_onlinejobModel.FK_User_Countries" FromRole="Country" ToRole="User" />
         </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateOpened" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateClosed" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CareerAreasId" Type="Int32" Nullable="false" />
+          <Property Name="Qualification" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CareerArea" Relationship="db_1526890_onlinejobModel.FK_Job_CareerAreas" FromRole="Job" ToRole="CareerArea" />
+          <NavigationProperty Name="UserJobApplications" Relationship="db_1526890_onlinejobModel.FK_UserJobApplication_Job" FromRole="Job" ToRole="UserJobApplication" />
+        </EntityType>
         <EntityType Name="Religion">
           <Key>
             <PropertyRef Name="Id" />
@@ -525,6 +550,15 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Users" Relationship="db_1526890_onlinejobModel.FK_User_Religion" FromRole="Religion" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Stage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IndexNumber" Type="Int32" />
+          <NavigationProperty Name="UserJobApplicationStages" Relationship="db_1526890_onlinejobModel.FK_UserJobApplicationStage_Stage" FromRole="Stage" ToRole="UserJobApplicationStage" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -544,6 +578,29 @@
           <NavigationProperty Name="Country" Relationship="db_1526890_onlinejobModel.FK_User_Countries" FromRole="User" ToRole="Country" />
           <NavigationProperty Name="Religion" Relationship="db_1526890_onlinejobModel.FK_User_Religion" FromRole="User" ToRole="Religion" />
           <NavigationProperty Name="UserJobApplications" Relationship="db_1526890_onlinejobModel.FK_UserJobApplication_User" FromRole="User" ToRole="UserJobApplication" />
+        </EntityType>
+        <EntityType Name="UserJobApplication">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JobId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Job" Relationship="db_1526890_onlinejobModel.FK_UserJobApplication_Job" FromRole="UserJobApplication" ToRole="Job" />
+          <NavigationProperty Name="User" Relationship="db_1526890_onlinejobModel.FK_UserJobApplication_User" FromRole="UserJobApplication" ToRole="User" />
+          <NavigationProperty Name="UserJobApplicationStages" Relationship="db_1526890_onlinejobModel.FK_UserJobApplicationStage_UserJobApplication" FromRole="UserJobApplication" ToRole="UserJobApplicationStage" />
+        </EntityType>
+        <EntityType Name="UserJobApplicationStage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StageId" Type="Int32" Nullable="false" />
+          <Property Name="UserJobApplicationId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Stage" Relationship="db_1526890_onlinejobModel.FK_UserJobApplicationStage_Stage" FromRole="UserJobApplicationStage" ToRole="Stage" />
+          <NavigationProperty Name="UserJobApplication" Relationship="db_1526890_onlinejobModel.FK_UserJobApplicationStage_UserJobApplication" FromRole="UserJobApplicationStage" ToRole="UserJobApplication" />
         </EntityType>
         <Association Name="FK_User_AspNetRoles">
           <End Type="db_1526890_onlinejobModel.AspNetRole" Role="AspNetRole" Multiplicity="0..1" />
@@ -597,6 +654,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Job_CareerAreas">
+          <End Type="db_1526890_onlinejobModel.CareerArea" Role="CareerArea" Multiplicity="1" />
+          <End Type="db_1526890_onlinejobModel.Job" Role="Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CareerArea">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="CareerAreasId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Countries">
           <End Type="db_1526890_onlinejobModel.Country" Role="Country" Multiplicity="1" />
           <End Type="db_1526890_onlinejobModel.User" Role="User" Multiplicity="*" />
@@ -606,6 +675,18 @@
             </Principal>
             <Dependent Role="User">
               <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserJobApplication_Job">
+          <End Type="db_1526890_onlinejobModel.Job" Role="Job" Multiplicity="1" />
+          <End Type="db_1526890_onlinejobModel.UserJobApplication" Role="UserJobApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserJobApplication">
+              <PropertyRef Name="JobId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -621,58 +702,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="AspNetUserRoles">
-          <End Type="db_1526890_onlinejobModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
-          <End Type="db_1526890_onlinejobModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
-        </Association>
-        <EntityType Name="Job">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DateOpened" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DateClosed" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CareerAreasId" Type="Int32" Nullable="false" />
-          <Property Name="Qualification" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="CareerArea" Relationship="db_1526890_onlinejobModel.FK_Job_CareerAreas" FromRole="Job" ToRole="CareerArea" />
-          <NavigationProperty Name="UserJobApplications" Relationship="db_1526890_onlinejobModel.FK_UserJobApplication_Job" FromRole="Job" ToRole="UserJobApplication" />
-        </EntityType>
-        <Association Name="FK_Job_CareerAreas">
-          <End Type="db_1526890_onlinejobModel.CareerArea" Role="CareerArea" Multiplicity="1" />
-          <End Type="db_1526890_onlinejobModel.Job" Role="Job" Multiplicity="*" />
+        <Association Name="FK_UserJobApplicationStage_Stage">
+          <End Type="db_1526890_onlinejobModel.Stage" Role="Stage" Multiplicity="1" />
+          <End Type="db_1526890_onlinejobModel.UserJobApplicationStage" Role="UserJobApplicationStage" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CareerArea">
+            <Principal Role="Stage">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Job">
-              <PropertyRef Name="CareerAreasId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="UserJobApplication">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="JobId" Type="Int32" Nullable="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Job" Relationship="db_1526890_onlinejobModel.FK_UserJobApplication_Job" FromRole="UserJobApplication" ToRole="Job" />
-          <NavigationProperty Name="User" Relationship="db_1526890_onlinejobModel.FK_UserJobApplication_User" FromRole="UserJobApplication" ToRole="User" />
-          <NavigationProperty Name="UserJobApplicationStages" Relationship="db_1526890_onlinejobModel.FK_UserJobApplicationStage_UserJobApplication" FromRole="UserJobApplication" ToRole="UserJobApplicationStage" />
-        </EntityType>
-        <Association Name="FK_UserJobApplication_Job">
-          <End Type="db_1526890_onlinejobModel.Job" Role="Job" Multiplicity="1" />
-          <End Type="db_1526890_onlinejobModel.UserJobApplication" Role="UserJobApplication" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Job">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserJobApplication">
-              <PropertyRef Name="JobId" />
+            <Dependent Role="UserJobApplicationStage">
+              <PropertyRef Name="StageId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -688,17 +726,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="UserJobApplicationStage">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StageId" Type="Int32" Nullable="false" />
-          <Property Name="UserJobApplicationId" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="UserJobApplication" Relationship="db_1526890_onlinejobModel.FK_UserJobApplicationStage_UserJobApplication" FromRole="UserJobApplicationStage" ToRole="UserJobApplication" />
-          <NavigationProperty Name="Stage" Relationship="db_1526890_onlinejobModel.FK_UserJobApplicationStage_Stage" FromRole="UserJobApplicationStage" ToRole="Stage" />
-        </EntityType>
         <Association Name="FK_UserJobApplicationStage_UserJobApplication">
           <End Type="db_1526890_onlinejobModel.UserJobApplication" Role="UserJobApplication" Multiplicity="1" />
           <End Type="db_1526890_onlinejobModel.UserJobApplicationStage" Role="UserJobApplicationStage" Multiplicity="*" />
@@ -711,27 +738,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Stage">
+        <Association Name="AspNetUserRoles">
+          <End Type="db_1526890_onlinejobModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="db_1526890_onlinejobModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Email">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="IndexNumber" Type="Int32" />
-          <NavigationProperty Name="UserJobApplicationStages" Relationship="db_1526890_onlinejobModel.FK_UserJobApplicationStage_Stage" FromRole="Stage" ToRole="UserJobApplicationStage" />
+          <Property Name="Email1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
-        <Association Name="FK_UserJobApplicationStage_Stage">
-          <End Type="db_1526890_onlinejobModel.Stage" Role="Stage" Multiplicity="1" />
-          <End Type="db_1526890_onlinejobModel.UserJobApplicationStage" Role="UserJobApplicationStage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Stage">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserJobApplicationStage">
-              <PropertyRef Name="StageId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -810,9 +828,32 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Jobs">
+            <EntityTypeMapping TypeName="db_1526890_onlinejobModel.Job">
+              <MappingFragment StoreEntitySet="Job">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="CareerAreasId" ColumnName="CareerAreasId" />
+                <ScalarProperty Name="DateClosed" ColumnName="DateClosed" />
+                <ScalarProperty Name="DateOpened" ColumnName="DateOpened" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Religions">
             <EntityTypeMapping TypeName="db_1526890_onlinejobModel.Religion">
               <MappingFragment StoreEntitySet="Religion">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stages">
+            <EntityTypeMapping TypeName="db_1526890_onlinejobModel.Stage">
+              <MappingFragment StoreEntitySet="Stage">
+                <ScalarProperty Name="IndexNumber" ColumnName="IndexNumber" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -829,28 +870,6 @@
                 <ScalarProperty Name="IcNumber" ColumnName="IcNumber" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="AspUserId" ColumnName="AspUserId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="db_1526890_onlinejobModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-            <EndProperty Name="AspNetUser">
-              <ScalarProperty Name="Id" ColumnName="UserId" />
-            </EndProperty>
-            <EndProperty Name="AspNetRole">
-              <ScalarProperty Name="Id" ColumnName="RoleId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <EntitySetMapping Name="Jobs">
-            <EntityTypeMapping TypeName="db_1526890_onlinejobModel.Job">
-              <MappingFragment StoreEntitySet="Job">
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
-                <ScalarProperty Name="CareerAreasId" ColumnName="CareerAreasId" />
-                <ScalarProperty Name="DateClosed" ColumnName="DateClosed" />
-                <ScalarProperty Name="DateOpened" ColumnName="DateOpened" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -875,11 +894,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Stages">
-            <EntityTypeMapping TypeName="db_1526890_onlinejobModel.Stage">
-              <MappingFragment StoreEntitySet="Stage">
-                <ScalarProperty Name="IndexNumber" ColumnName="IndexNumber" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="db_1526890_onlinejobModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Emails">
+            <EntityTypeMapping TypeName="db_1526890_onlinejobModel.Email">
+              <MappingFragment StoreEntitySet="Email">
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Email1" ColumnName="Email" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

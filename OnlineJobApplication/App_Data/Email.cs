@@ -12,14 +12,10 @@ namespace OnlineJobApplication.App_Data
     using System;
     using System.Collections.Generic;
     
-    public partial class UserJobApplicationStage
+    public partial class Email
     {
         public int Id { get; set; }
-        public int StageId { get; set; }
-        public string UserJobApplicationId { get; set; }
-        public System.DateTime Date { get; set; }
-    
-        public virtual Stage Stage { get; set; }
-        public virtual UserJobApplication UserJobApplication { get; set; }
+        public string Email1 { get; set; }
+        public string Message { get; set; }
     }
 }

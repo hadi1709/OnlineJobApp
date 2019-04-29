@@ -32,11 +32,12 @@ namespace OnlineJobApplication.App_Data
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<CareerArea> CareerAreas { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
-        public virtual DbSet<Religion> Religions { get; set; }
-        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Job> Jobs { get; set; }
+        public virtual DbSet<Religion> Religions { get; set; }
+        public virtual DbSet<Stage> Stages { get; set; }
+        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserJobApplication> UserJobApplications { get; set; }
         public virtual DbSet<UserJobApplicationStage> UserJobApplicationStages { get; set; }
-        public virtual DbSet<Stage> Stages { get; set; }
+        public virtual DbSet<Email> Emails { get; set; }
     }
 }
