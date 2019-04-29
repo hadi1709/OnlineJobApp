@@ -27,5 +27,7 @@ namespace OnlineJobApplication.Models
 
         public string Qualification { get; set; }
 
+        public string CurrentStage { get; set; }
+
     }
 }

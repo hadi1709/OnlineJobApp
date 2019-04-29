@@ -3,88 +3,97 @@
 <div class="modal fade" id="userModal" role="dialog">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
+            @if (Model.User != null)
+            {
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Job Applicant Details</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
 
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Job Applicant Details</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
+                <!-- Modal body -->
+                <div class="modal-body">
 
-            <!-- Modal body -->
-            <div class="modal-body">
-                @{
-                    if (Model.User != null)
-                    {
-                        <div class="row">
-                            <div class="col-md-4  border-right">
-                                <div class="row col">
-                                    <img src='http://lorempixel.com/output/cats-q-c-640-640-5.jpg' class="rounded-circle mx-auto d-block" width="150" height="150">
-                                </div>
-                                <div class="row col mt-2">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <i class="fa fa-user"></i> Personal Info
-                                        </div>
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item"><i class="fa fa-user-alt"></i> @Model.User.Name</li>
-                                            <li class="list-group-item"><i class="fa fa-map"></i> @Model.User.Address</li>
-                                            <li class="list-group-item"><i class="fa fa-globe"></i> @Model.User.Country</li>
-                                            <li class="list-group-item"><i class="fa fa-check"></i> @Model.User.Religion</li>
-                                            <li class="list-group-item"><i class="fa fa-phone"></i> @Model.User.PhoneNumber</li>
-                                        </ul>
-                                    </div>
-                                </div>
 
+                    <div class="row">
+                        <div class="col-md-4  border-right">
+                            <div class="row col">
+                                <img src='http://lorempixel.com/output/cats-q-c-640-640-5.jpg' class="rounded-circle mx-auto d-block" width="150" height="150">
                             </div>
-                            <div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="overflow">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            Professional Profile
-                                        </div>
-                                        <div class="card-body">
-                                            Skilled customer service representative with 6+ years of experience. Received 98% favorable customer ratings at Second Level Industries. Customer retention for regular callers was 41% above the company average. Seeking to use proven service and sales skills to grow customer loyalty for Verizon.
-                                        </div>
+                            <div class="row col mt-2">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <i class="fa fa-user"></i> Personal Info
                                     </div>
-                                    <div class="card mt-2">
-                                        <div class="card-header">
-                                            Qualification
-                                        </div>
-                                        <div class="card-body">
-                                            <ul>
-                                                <li>Data driven, proven problem solver and pragmatic thinker</li>
-                                                <li>Self-starter and takes ownership in the quality of work being delivered</li>
-                                                <li>Current knowledge of project/program management best practices, including agile delivery methods</li>
-                                                <li>A passion for technology: Proven ability to translate technology offerings into business value</li>
-                                                <li>Comfort with the ambiguity that comes with a maturing organization chartered to disrupt at scale</li>
-                                                <li>Able to thrive in a fast-paced environment with the ability to adapt to changing priorities</li>
-                                                <li>Delivery orientation: Balances a bias toward action with proactively seeking help when needed</li>
-                                                <li>At least 3 years of experience working in technology</li>
-                                                <li>Bachelor's degree in business, computer science, or equivalent work experience</li>
-                                                <li>Skilled in one or more of the following: Project Leadership, Marketing, Business Analytics, Operations</li>
-                                                <li>Collaborative: Able to work with a team to deliver world-class solutions</li>
-                                                <li>Excellent written and verbal communication skills</li>
-                                                <li>Demonstrated track record of working within complex organizations requiring strong influencing skills - ability to work cooperatively at all levels in a matrixed environment</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>                               
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item"><i class="fa fa-user-alt"></i> @Model.User.Name</li>
+                                        <li class="list-group-item"><i class="fa fa-map"></i> @Model.User.Address</li>
+                                        <li class="list-group-item"><i class="fa fa-globe"></i> @Model.User.Country</li>
+                                        <li class="list-group-item"><i class="fa fa-check"></i> @Model.User.Religion</li>
+                                        <li class="list-group-item"><i class="fa fa-phone"></i> @Model.User.PhoneNumber</li>
+                                    </ul>
+                                </div>
                             </div>
 
                         </div>
+                        <div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="overflow">
+                                <div class="card">
+                                    <div class="card-header">
+                                        Professional Profile
+                                    </div>
+                                    <div class="card-body">
+                                        Skilled customer service representative with 6+ years of experience. Received 98% favorable customer ratings at Second Level Industries. Customer retention for regular callers was 41% above the company average. Seeking to use proven service and sales skills to grow customer loyalty for Verizon.
+                                    </div>
+                                </div>
+                                <div class="card mt-2">
+                                    <div class="card-header">
+                                        Qualification
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            <li>Data driven, proven problem solver and pragmatic thinker</li>
+                                            <li>Self-starter and takes ownership in the quality of work being delivered</li>
+                                            <li>Current knowledge of project/program management best practices, including agile delivery methods</li>
+                                            <li>A passion for technology: Proven ability to translate technology offerings into business value</li>
+                                            <li>Comfort with the ambiguity that comes with a maturing organization chartered to disrupt at scale</li>
+                                            <li>Able to thrive in a fast-paced environment with the ability to adapt to changing priorities</li>
+                                            <li>Delivery orientation: Balances a bias toward action with proactively seeking help when needed</li>
+                                            <li>At least 3 years of experience working in technology</li>
+                                            <li>Bachelor's degree in business, computer science, or equivalent work experience</li>
+                                            <li>Skilled in one or more of the following: Project Leadership, Marketing, Business Analytics, Operations</li>
+                                            <li>Collaborative: Able to work with a team to deliver world-class solutions</li>
+                                            <li>Excellent written and verbal communication skills</li>
+                                            <li>Demonstrated track record of working within complex organizations requiring strong influencing skills - ability to work cooperatively at all levels in a matrixed environment</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    @if (Model.CurrentStage.Id >= 5)
+                    {
+                        <label class="text-danger">@Model.CurrentStage.Name</label>
                     }
-                }
+                    else if (Model.CurrentStage.Id == 4)
+                    {
+                        <button type="button" onclick="nextStage('@Model.CurrentStage.UserJobApplicationId.ToString()', '5', '@Model.JobModel.Id')" class="btn btn-success" data-dismiss="modal"><i class="fa fa-thumbs-up"></i> @Model.StageList.Where(m => m.Name != "Rejected").Select(m => m.Name).FirstOrDefault()</button>
+                        <button type="button" onclick="nextStage('@Model.CurrentStage.UserJobApplicationId.ToString()', '6', '@Model.JobModel.Id')" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-thumbs-down"></i> Offers Declined</button>
+                    }
+                    else
+                    {
+                        <button type="button" onclick="nextStage('@Model.CurrentStage.UserJobApplicationId.ToString()', '@Model.StageList.Where(m => m.Name != "Rejected").Select(m => m.Id).FirstOrDefault().ToString()', '@Model.JobModel.Id')" class="btn btn-success" data-dismiss="modal"><i class="fa fa-thumbs-up"></i> @Model.StageList.Where(m => m.Name != "Rejected").Select(m => m.Name).FirstOrDefault()</button>
+                        <button type="button" onclick="nextStage('@Model.CurrentStage.UserJobApplicationId.ToString()', '@Model.StageList.Where(m => m.Name == "Rejected").Select(m => m.Id).FirstOrDefault().ToString()', '@Model.JobModel.Id')" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-thumbs-down"></i> Reject</button>
+                    }
+                </div>
 
-            </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fa fa-thumbs-up"></i> Employment Test</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-thumbs-down"></i> Reject</button>
-            </div>
-
+            }
         </div>
     </div>
 </div>

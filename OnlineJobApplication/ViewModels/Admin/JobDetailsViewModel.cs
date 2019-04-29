@@ -12,6 +12,10 @@ namespace OnlineJobApplication.ViewModels.Admin
 
         public List<UserModel> UserList { get; set; }
 
+        public StageModel CurrentStage { get; set; }
+
+        public List<StageModel> StageList { get; set; }
+
         public UserModel User { get; set; }
 
         public StatusModel StatusModel { get; set; }

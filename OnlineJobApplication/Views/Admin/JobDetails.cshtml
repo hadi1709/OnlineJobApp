@@ -16,7 +16,7 @@
             <thead>
                 <tr>
                     <th scope="col">User</th>
-                    <th>Action</th>
+                    <th>Current Satge</th>
                 </tr>
             </thead>
         </table>
@@ -38,7 +38,7 @@
                 "columns": [
                     {
                         "render": function (data, type, row, meta) {
-                            return '<a class="pointer nav-link" onclick="userModal('+row.Id+')">' +
+                            return '<a class="pointer nav-link" onclick="userModal('+row.Id+','+@Model.JobModel.Id+')">' +
                                 '<label class="pointer text-light">' + row.Name + ', ' + row.IcNumber +'</label>' +
                             '</a > ';
                         }
@@ -46,16 +46,20 @@
                     {
 
                         "render": function (data, type, row, meta) {
-                            return '<a class="badge badge-warning pointer" href="/Admin/EditJobOffer/'+row.Id+'"><i class="fa fa-pen"></i> Edit</a> <a class="badge badge-danger pointer"><i class="fa fa-trash"></i> Delete</a>';
+                            return '<h6><span class="badge badge-secondary">'+row.CurrentStage+'</span></h4>';
                         }
                     }
                 ]
             });
         });
 
-        function userModal(userId) {
+        function userModal(userId, jobId) {
             $.ajax({
-                url: '/Admin/_UserModal/' + userId,
+                url: '/Admin/_UserModal/',
+                data: {
+                    id: userId,
+                    jobId: jobId
+                },
                 success: function (data) {
                     $('#userModalWrapper').html(data);
                     $('#userModal').data('validator', null);
@@ -63,6 +67,21 @@
                     $(function () {
                         $('#userModal').modal('show');
                     });
+                }
+            });
+        }
+
+        function nextStage(userJobApplicationId, stageId, jobId)
+        {
+            $.ajax({
+                url: '/Admin/NextStage/',
+                data: {
+                    UserJobApplicationId: userJobApplicationId,
+                    StageId: stageId,
+                    jobId : jobId
+                },
+                success: function (data) {
+                    location.reload();
                 }
             });
         }

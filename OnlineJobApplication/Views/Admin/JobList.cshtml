@@ -71,7 +71,7 @@
                     { "data": "CareerAreas" },
                     {
                         "render": function (data, type, row, meta) {
-                            return '<a class="badge badge-warning pointer" href="/Admin/EditJobOffer/'+row.Id+'"><i class="fa fa-pen"></i> Edit</a> <a class="badge badge-danger pointer"><i class="fa fa-trash"></i> Delete</a>';
+                            return '<a class="badge badge-warning pointer" href="/Admin/EditJobOffer/' + row.Id + '"><i class="fa fa-pen"></i> Edit</a> <a class="badge badge-danger pointer" href="/Admin/DeleteJobOffer/' + row.Id +'"><i class="fa fa-trash"></i> Delete</a>';
                         }
                     }
                 ]

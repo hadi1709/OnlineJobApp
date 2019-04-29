@@ -1,17 +1,39 @@
-﻿@{
-    ViewBag.Title = "Contact";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿@model OnlineJobApplication.ViewModels.Home.ContactUsViewModel
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<h2 class="text-center">Contact Us</h2>
+<p class="text-center">Do you have questions? Please do not hesitate to contact us directly. Our team wil come back to you within matter of hours to help you.</p>
+<div class="row">
+    <div class="col-md-8">
+        @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                @Html.LabelFor(m => m.EmailContact.Email, new { @class = "col-md-2 control-label" })
+                <div class="col-md-12">
+                    @Html.TextBoxFor(m => m.EmailContact.Email, new { @class = "form-control" })
+                    <span class="text-danger">@Html.ValidationMessageFor(m => m.EmailContact.Email)</span>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.EmailContact.Message, new { @class = "col-md-2 control-label" })
+                <div class="col-md-12">
+                    @Html.TextAreaFor(m => m.EmailContact.Message, new { @class = "form-control" })
+                    <span class="text-danger">@Html.ValidationMessageFor(m => m.EmailContact.Message)</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-dark">Submit</button>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-md-4">
+        <label><span><i class="fa fa-map"></i></span><strong> Address:</strong></label>
+        <p>Jalan Gadong | Simpang 137, Bandar Seri Begawan BA1511, Brunei Darussalam.</p>
+        <label><i class="fa fa-mobile-phone"></i><strong>Telephone:</strong></label>
+        <p> +6738850882 (Abd Azim Bujang)</p>
+    </div>
+</div>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+

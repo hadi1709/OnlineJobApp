@@ -67,6 +67,7 @@ namespace OnlineJobApplication.Controllers
             {
                 var userId = CommonHelper.GetUserByAspId(User.Identity.GetUserId());
                 var currentDateTime = DateTime.Now;
+                var jobGuid = Guid.NewGuid().ToString();
 
                 using (db_1526890_onlinejobEntities db = new db_1526890_onlinejobEntities())
                 {
@@ -87,12 +88,23 @@ namespace OnlineJobApplication.Controllers
 
                     UserJobApplication userJobApplicaitonObj = new UserJobApplication()
                     {
+                        Id = jobGuid,
                         JobId = viewModel.JobModel.Id,
                         UserId = userId,
                         Date = currentDateTime
                     };
 
                     db.UserJobApplications.Add(userJobApplicaitonObj);
+                    db.SaveChanges();
+
+                    UserJobApplicationStage userJobApplicationStage = new UserJobApplicationStage()
+                    {
+                        UserJobApplicationId = jobGuid,
+                        StageId = 1,
+                        Date = currentDateTime
+                    };
+
+                    db.UserJobApplicationStages.Add(userJobApplicationStage);
                     db.SaveChanges();
 
                     jobStatus.Code = CommonHelper.StatusOk;

@@ -206,6 +206,7 @@ namespace OnlineJobApplication
                 using (db_1526890_onlinejobEntities db = new db_1526890_onlinejobEntities())
                 {
                     var queryUserJob = (from job in db.UserJobApplications
+                                        join jobStage in db.UserJobApplicationStages on job.Id equals jobStage.UserJobApplicationId                                      
                                         where job.JobId == jobId
                                         select new UserModel
                                         {
@@ -215,7 +216,8 @@ namespace OnlineJobApplication
                                             Country = job.User.Country.CountryName,
                                             IcNumber = job.User.IcNumber,
                                             PhoneNumber = job.User.PhoneNumber,
-                                            Religion = job.User.Religion.Name
+                                            Religion = job.User.Religion.Name,
+                                            CurrentStage = jobStage.Stage.Name
                                         }).ToList();
 
                     return queryUserJob;
@@ -253,6 +255,91 @@ namespace OnlineJobApplication
                 throw;
             }
         }
+
+        public static StageModel GetCurrentStage (int? jobId, int? userId)
+        {
+            try
+            {
+                using (db_1526890_onlinejobEntities db = new db_1526890_onlinejobEntities())
+                {
+                    var queryStage = (from stage in db.UserJobApplicationStages
+                                      where stage.UserJobApplication.JobId == jobId &&
+                                      stage.UserJobApplication.User.Id == userId
+                                      select new StageModel
+                                      {
+                                          Id = stage.StageId,
+                                          Name = stage.Stage.Name,
+                                          IndexNumber = stage.Stage.IndexNumber,
+                                          UserJobApplicationId = stage.UserJobApplicationId
+                                      }).FirstOrDefault();
+
+                    return queryStage;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public static List<StageModel> GetNextStageIndexNumber(StageModel currentStage)
+        {
+            try
+            {
+                using (db_1526890_onlinejobEntities db = new db_1526890_onlinejobEntities())
+                {
+                    if(currentStage.Id == 7)
+                    {
+                        List<StageModel> stage = new List<StageModel>();
+                        stage.Add(currentStage);
+                        return stage;
+                    }
+
+                    int? nextStageIndexNumber = currentStage.IndexNumber + 1;
+
+
+                    var queryStage = (from stage in db.Stages
+                                      where stage.IndexNumber == nextStageIndexNumber || stage.Name == "Rejected"
+                                      select new StageModel {
+                                          Id = stage.Id,
+                                          Name = stage.Name,
+                                          IndexNumber = stage.IndexNumber
+                                      }).ToList();
+
+                    return queryStage;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }           
+        }
+
+        public static List<JobModel> GetJobListByUserId(string userId)
+        {
+            try
+            {
+                using (db_1526890_onlinejobEntities db = new db_1526890_onlinejobEntities())
+                {
+                    var queryJobApplication = (from jobApplication in db.UserJobApplications
+                                               join jobAppStage in db.UserJobApplicationStages on jobApplication.Id equals jobAppStage.UserJobApplicationId
+                                               where jobApplication.User.AspUserId == userId &&
+                                               jobApplication.Job.IsDeleted == false
+                                               select new JobModel
+                                               {
+                                                   Title = jobApplication.Job.Title,
+                                                   CurrentStage = jobAppStage.Stage.Name
+                                               }).ToList();
+
+                    return queryJobApplication;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public const int StatusError = 2;
 
         public const int StatusOk = 1;

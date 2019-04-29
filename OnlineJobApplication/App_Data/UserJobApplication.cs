@@ -20,7 +20,7 @@ namespace OnlineJobApplication.App_Data
             this.UserJobApplicationStages = new HashSet<UserJobApplicationStage>();
         }
     
-        public int Id { get; set; }
+        public string Id { get; set; }
         public int JobId { get; set; }
         public int UserId { get; set; }
         public System.DateTime Date { get; set; }
